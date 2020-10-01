@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.domain.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
+
     private final InstitutionService institutionService;
     private final DonationService donationService;
 
