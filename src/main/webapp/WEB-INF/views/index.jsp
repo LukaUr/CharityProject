@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
 </head>
 <body>
+
 <%@include file="fragments/header.jsp" %>
+
 
 <section class="stats">
     <div class="container container--85">

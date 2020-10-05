@@ -2,9 +2,8 @@ package pl.coderslab.charity.domain.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.domain.model.donation.DonationService;
 import pl.coderslab.charity.domain.model.institution.Institution;
 import pl.coderslab.charity.domain.model.institution.InstitutionService;
@@ -34,8 +33,8 @@ public class HomeController {
         return donationService.countBags();
     }
 
-    @RequestMapping("/")
-    public String homeAction(Model model){
+    @GetMapping("/")
+    public String homeAction(){
         return "index";
     }
 }

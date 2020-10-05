@@ -1,6 +1,7 @@
 package pl.coderslab.charity.domain.model.category;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 @Data
+@ToString(of = "name")
 public class Category {
 
     @Id

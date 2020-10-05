@@ -16,4 +16,8 @@ public class DonationService {
     public long countBags() {
         return donationRepository.getNumberOfBags();
     }
+
+    public void createDonation(Donation donation) {
+        donationRepository.save(donation);
+    }
 }
