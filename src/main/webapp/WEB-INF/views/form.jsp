@@ -130,9 +130,10 @@
             </div>
         </div>
 
-        <div class="summary">
+        <div class="summary" data-step="5">
+            <h3>Podsumowanie</h3>
             <div class="form-group--buttons">
-                <form:button type="submit">Dodaj</form:button>
+                <form:button type="submit" class="btn">Dodaj</form:button>
             </div>
             </form:form>
         </div>

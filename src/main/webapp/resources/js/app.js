@@ -100,12 +100,9 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next = form.querySelectorAll(".next-step");
       this.$prev = form.querySelectorAll(".prev-step");
       this.$step = form.querySelector(".form--steps-counter span");
+      this.$stepCounter = form.querySelector(".form--steps-counter");
       this.currentStep = 1;
-
-      this.$stepInstructions = form.querySelectorAll(".form--steps-instructions p");
-      const $stepForms = form.querySelectorAll("form > div");
-      this.slides = [...this.$stepInstructions, ...$stepForms];
-
+      this.slides = form.querySelectorAll("form > div");
       this.init();
     }
 
@@ -149,19 +146,19 @@ document.addEventListener("DOMContentLoaded", function() {
      */
     updateForm() {
       this.$step.innerText = this.currentStep;
-
-      // TODO: Validation
+      if (this.currentStep < 2) this.$prev.forEach(el => el.classList.add("hidden"));
+      if (this.currentStep === 2) this.$prev.forEach(el => el.classList.remove("hidden"));
+      if (this.currentStep > 4) this.$next.forEach(el => el.classList.add("hidden"));
+      if (this.currentStep === 4) this.$next.forEach(el => el.classList.remove("hidden"));
+      if (this.currentStep === 5) this.$stepCounter.classList.add("hidden");
+      if (this.currentStep < 5) this.$stepCounter.classList.remove("hidden");
 
       this.slides.forEach(slide => {
         slide.classList.remove("active");
-
         if (slide.dataset.step == this.currentStep) {
           slide.classList.add("active");
         }
       });
-
-      this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
-      this.$step.parentElement.hidden = this.currentStep >= 5;
 
       // TODO: get data from inputs and show them in summary
     }
