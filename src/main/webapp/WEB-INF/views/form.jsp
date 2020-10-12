@@ -15,7 +15,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel="stylesheet" href="<c:url value="resources/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
     <title>Form</title>
 </head>
 <body>
@@ -59,8 +59,8 @@
 
     <div class="form--steps-container">
         <form:form modelAttribute="donation" method="post" action="/donation">
-        <div class="active" data-step="4">
-            <p class="form--steps-counter">Krok 1/4</p>
+        <p class="form--steps-counter">Krok <span>1</span>/4</p>
+        <div class="active" data-step="1">
             <h3>Zaznacz, co chcesz dodać:</h3>
             <c:forEach items="${categories}" var="category">
                 <label class="category">
@@ -69,43 +69,77 @@
                     <span class="checkmark"></span>
                 </label>
             </c:forEach>
-            <div class="form-group--buttons">
-                <button class="btn" type="submit">Dalej</button>
+        </div>
+
+        <div data-step="2">
+            <h3>Podaj liczbę 60l worków, do których spakowałeś/aś rzeczy</h3>
+            <div class="form-group">
+                <span class="form--steps-text">Liczba 60l worków: </span> <form:input type="number" path="quantity"/>
             </div>
         </div>
-        <div>
-            <p class="form--steps-counter">Krok 2/4</p>
-            <p>Podaj liczbę 60l worków, do których spakowałeś/aś rzeczy</p>
-            Liczba worków: <form:input type="number" path="quantity"/>
-        </div>
-        <div>
-            <p class="form--steps-counter">Krok 3/4</p>
-            <p>Wybierze organizację, której chcesz pomóc</p>
-            <form:select path="institution" items="${institutions}" itemValue="id" itemLabel="name"/>
-        </div>
-        <div>
-            <p class="form--steps-counter">Krok 4/4</p>
-            <p>podaj adres oraz termin odbioru rzeczy przez kuriera</p>
-            Address:
-            <form:input path="zipCode"/>
-            <form:input path="street"/>
-            <form:input path="city"/>
-            <br>
 
-            <br>
-            Pickup comment
-            <form:textarea path="pickUpComment"/>
-            <br>
-            Pickup date
-            <form:input type="date" path="pickUpDate"/>
-            <br>
-            Pickup time
-            <form:input type="time" path="pickUpTime"/>
-            <br>
-            <form:button type="submit">dodaj</form:button>
+        <div class="active" data-step="3">
+            <h3>Wybierz organizację, której chcesz pomóc</h3>
+            <div class="form-group--dropdown">
+                <form:select path="institution" items="${institutions}" itemValue="id" itemLabel="name"
+                             class="select"/>
+            </div>
+        </div>
+
+        <div data-step="4">
+            <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera</h3>
+            <div class="form-section">
+                <div class="form-section--columns">
+                    <div>
+                        <div class="form-group">
+                            <h4>Address:</h4>
+                            <label>
+                                <span class="form--steps-text">Ulica</span>
+                                <form:input path="street"/>
+                            </label>
+                            <label>
+                                <span class="form--steps-text">Miasto</span>
+                                <form:input path="city"/></label>
+                            <label><span class="form--steps-text">Kod pocztowy</span>
+                                <form:input path="zipCode"/>
+                            </label>
+                            <label>
+                                <span class="form--steps-text">Numer telefonu</span>
+                                <form:input path="phoneNumber"/>
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <h4>Termin odbioru:</h4>
+                            <label>
+                                <span class="form--steps-text">Data odbioru</span>
+                                <form:input type="date" path="pickUpDate"/>
+                            </label>
+                            <label>
+                                <span class="form--steps-text">Godzina odbioru</span>
+                                <form:input type="time" path="pickUpTime"/>
+                            </label>
+                            <label>
+                                <span class="form--steps-text">Uwagi dla kuriera</span>
+                                <form:textarea path="pickUpComment"/>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="form-group--buttons">
+                <form:button type="submit">Dodaj</form:button>
+            </div>
             </form:form>
         </div>
-        <div class="summary">
+
+        <div class="form-group--buttons active">
+            <button class="btn prev-step" type="submit">Wróc</button>
+            <button class="btn next-step" type="submit">Dalej</button>
         </div>
     </div>
 </div>
@@ -113,6 +147,6 @@
 
 <%@include file="fragments/footer.jsp" %>
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>

@@ -32,6 +32,8 @@ public class Donation {
 
     private String zipCode;
 
+    private Long phoneNumber;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
 

@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import pl.coderslab.charity.domain.model.category.Category;
 import pl.coderslab.charity.domain.model.category.CategoryService;
+import pl.coderslab.charity.domain.model.donation.DonationService;
 import pl.coderslab.charity.domain.model.institution.Institution;
 import pl.coderslab.charity.domain.model.institution.InstitutionService;
 
@@ -35,6 +36,9 @@ public class DonationControllerTest {
     @MockBean
     private CategoryService categoryService;
 
+    @MockBean
+    private DonationService donationService;
+
     @Spy
     List<Institution> institutionList = new ArrayList<>();
 
@@ -56,14 +60,14 @@ public class DonationControllerTest {
 
     @Test
     public void shouldAddInstitutionsToForm() throws Exception {
-        mockMvc.perform(get("/donation/stepOne"))
+        mockMvc.perform(get("/donation"))
                 .andExpect(status().isOk())
                 .andExpect((model().attribute("institutions", institutionList)));
     }
 
     @Test
     public void shouldAddCategoriesToForm() throws Exception {
-        mockMvc.perform(get("/donation/stepOne"))
+        mockMvc.perform(get("/donation"))
                 .andExpect(status().isOk())
                 .andExpect((model().attribute("categories", categoryList)));
     }
