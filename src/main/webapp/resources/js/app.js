@@ -100,10 +100,12 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$next = form.querySelectorAll(".next-step");
       this.$prev = form.querySelectorAll(".prev-step");
       this.$step = form.querySelector(".form--steps-counter span");
+      this.$agreeBtn = form.querySelector(".agree-btn");
       this.$stepCounter = form.querySelector(".form--steps-counter");
       this.currentStep = 1;
       this.slides = form.querySelectorAll("form > div");
       this.init();
+      this.updateSummary();
     }
 
     /**
@@ -150,8 +152,16 @@ document.addEventListener("DOMContentLoaded", function() {
       if (this.currentStep === 2) this.$prev.forEach(el => el.classList.remove("hidden"));
       if (this.currentStep > 4) this.$next.forEach(el => el.classList.add("hidden"));
       if (this.currentStep === 4) this.$next.forEach(el => el.classList.remove("hidden"));
-      if (this.currentStep === 5) this.$stepCounter.classList.add("hidden");
-      if (this.currentStep < 5) this.$stepCounter.classList.remove("hidden");
+      if (this.currentStep === 5) {
+        this.updateSummary();
+        this.$stepCounter.classList.add("hidden");
+        this.$agreeBtn.classList.remove("hidden");
+
+      }
+      if (this.currentStep < 5) {
+        this.$stepCounter.classList.remove("hidden");
+        this.$agreeBtn.classList.add("hidden");
+      }
 
       this.slides.forEach(slide => {
         slide.classList.remove("active");
@@ -160,10 +170,63 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
 
-      // TODO: get data from inputs and show them in summary
+    }
+    updateSummary() {
+
+      //get values
+
+      const $categoryLabels = form.querySelectorAll(".category")
+      var categoriesFromForm = [];
+      for (const $label of $categoryLabels) {
+        if ($label.querySelector('[name="categories"]').checked) {
+          categoriesFromForm.push($label.querySelector("span").innerText);
+        }
+      }
+      const numberOfBags = form.querySelector("#quantity").value
+      const institutionName = form.querySelector(".dropdown").firstChild.textContent;
+      const street = form.querySelector("#street").value;
+      const city = form.querySelector("#city").value;
+      const zipCode = form.querySelector("#zipCode").value;
+      const phoneNumber = form.querySelector("#phoneNumber").value;
+      const pickUpDate = form.querySelector("#pickUpDate").value;
+      const pickUpTime = form.querySelector("#pickUpTime").value;
+      const pickUpComment = form.querySelector("#pickUpComment").value;
+
+      //insert values
+
+      const $infoNumberOfBags = form.querySelector("#infoNumberOfBags");
+      $infoNumberOfBags.innerText = numberOfBags;
+      const $infoCategories = form.querySelector("#infoCategories");
+      $infoCategories.innerHTML = "";
+      for (const category of categoriesFromForm) {
+        const $categoryDiv = document.createElement("div");
+        $categoryDiv.innerText = category;
+        $categoryDiv.classList.add("info-box-text");
+        $infoCategories.appendChild($categoryDiv);
+      }
+      const $infoInstitution = form.querySelector("#infoInstitution");
+      $infoInstitution.innerText = institutionName;
+      const $infoStreet = form.querySelector("#infoStreet");
+      $infoStreet.innerText = street;
+      const $infoCity = form.querySelector("#infoCity");
+      $infoCity.innerText = city;
+      const $infoZipCode = form.querySelector("#infoZipCode");
+      $infoZipCode.innerText = zipCode;
+      const $infoPhoneNumber = form.querySelector("#infoPhoneNumber");
+      $infoPhoneNumber.innerText = phoneNumber;
+      const $infoPickUpDate = form.querySelector("#infoPickUpDate");
+      $infoPickUpDate.innerText = pickUpDate;
+      const $infoPickUpTime = form.querySelector("#infoPickUpTime");
+      $infoPickUpTime.innerText = pickUpTime;
+      const $infoPickUpComment = form.querySelector("#infoPickUpComment");
+      $infoPickUpComment.innerText = pickUpComment;
+
+
     }
 
+
   }
+
   const form = document.querySelector(".form--steps");
   if (form !== null) {
     new FormSteps(form);

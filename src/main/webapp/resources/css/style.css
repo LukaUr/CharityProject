@@ -728,7 +728,7 @@ form .form-group--dropdown ul li:last-of-type {
 }
 
 /* line 173, scss/modules/_forms.scss */
-form .form-section h4 {
+form h4 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -1759,7 +1759,7 @@ footer .bottom-line--icons a img {
 }
 
 /* line 163, scss/style.scss */
-.form--steps form .summary ul li .icon {
+.form--steps .summary .icon {
   width: 60px;
   height: 60px;
   background-size: cover;
@@ -1767,15 +1767,38 @@ footer .bottom-line--icons a img {
 }
 
 /* line 169, scss/style.scss */
-.form--steps form .summary ul li .icon-bag {
+.form--steps .summary .icon-bag {
   background-image: url(../images/icon-bag.png);
 }
 
 /* line 173, scss/style.scss */
-.form--steps form .summary ul li .icon-hand {
+.form--steps .summary .icon-hand {
   background-image: url(../images/icon-hand.png);
 }
 
+.info-box-columns {
+  display: flex;
+  flex-direction: row;
+}
+
+.info-box-rows {
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+}
+
+.info-box-text {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 2rem;
+  width: 100%;
+  -ms-flex-item-align: start;
+}
+
+.center {
+  align-self: center;
+}
 
 
 

@@ -58,89 +58,119 @@
     </div>
 
     <div class="form--steps-container">
-        <form:form modelAttribute="donation" method="post" action="/donation">
-        <p class="form--steps-counter">Krok <span>1</span>/4</p>
-        <div class="active" data-step="1">
-            <h3>Zaznacz, co chcesz dodać:</h3>
-            <c:forEach items="${categories}" var="category">
-                <label class="category">
-                    <c:out value="${category.name}"/>
-                    <form:checkbox path="categories" value="${category.id}"/>
-                    <span class="checkmark"></span>
-                </label>
-            </c:forEach>
-        </div>
-
-        <div data-step="2">
-            <h3>Podaj liczbę 60l worków, do których spakowałeś/aś rzeczy</h3>
-            <div class="form-group">
-                <span class="form--steps-text">Liczba 60l worków: </span> <form:input type="number" path="quantity"/>
+        <form:form modelAttribute="donation" method="post" action="/donation" name="donation">
+            <p class="form--steps-counter">Krok <span>1</span>/4</p>
+            <div class="active" data-step="1">
+                <h3>Zaznacz, co chcesz dodać:</h3>
+                <c:forEach items="${categories}" var="category">
+                    <label class="category">
+                        <span><c:out value="${category.name}"/></span>
+                        <form:checkbox path="categories" value="${category.id}"/>
+                        <span class="checkmark"></span>
+                    </label>
+                </c:forEach>
             </div>
-        </div>
 
-        <div class="active" data-step="3">
-            <h3>Wybierz organizację, której chcesz pomóc</h3>
-            <div class="form-group--dropdown">
-                <form:select path="institution" items="${institutions}" itemValue="id" itemLabel="name"
-                             class="select"/>
+            <div data-step="2">
+                <h3>Podaj liczbę 60l worków, do których spakowałeś/aś rzeczy</h3>
+                <div class="form-group">
+                    <span class="form--steps-text">Liczba 60l worków: </span> <form:input type="number"
+                                                                                          path="quantity"/>
+                </div>
             </div>
-        </div>
 
-        <div data-step="4">
-            <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera</h3>
-            <div class="form-section">
-                <div class="form-section--columns">
-                    <div>
-                        <div class="form-group">
-                            <h4>Address:</h4>
-                            <label>
-                                <span class="form--steps-text">Ulica</span>
-                                <form:input path="street"/>
-                            </label>
-                            <label>
-                                <span class="form--steps-text">Miasto</span>
-                                <form:input path="city"/></label>
-                            <label><span class="form--steps-text">Kod pocztowy</span>
-                                <form:input path="zipCode"/>
-                            </label>
-                            <label>
-                                <span class="form--steps-text">Numer telefonu</span>
-                                <form:input path="phoneNumber"/>
-                            </label>
+            <div data-step="3">
+                <h3>Wybierz organizację, której chcesz pomóc</h3>
+                <div class="form-group--dropdown">
+                    <form:select path="institution" items="${institutions}" itemValue="id" itemLabel="name"
+                                 class="select"/>
+                </div>
+            </div>
+
+            <div data-step="4">
+                <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera</h3>
+                <div class="form-section">
+                    <div class="form-section--columns">
+                        <div>
+                            <div class="form-group">
+                                <h4>Address:</h4>
+                                <label>
+                                    <span class="form--steps-text">Ulica</span>
+                                    <form:input path="street"/>
+                                </label>
+                                <label>
+                                    <span class="form--steps-text">Miasto</span>
+                                    <form:input path="city"/></label>
+                                <label><span class="form--steps-text">Kod pocztowy</span>
+                                    <form:input path="zipCode"/>
+                                </label>
+                                <label>
+                                    <span class="form--steps-text">Numer telefonu</span>
+                                    <form:input path="phoneNumber"/>
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="form-group">
-                            <h4>Termin odbioru:</h4>
-                            <label>
-                                <span class="form--steps-text">Data odbioru</span>
-                                <form:input type="date" path="pickUpDate"/>
-                            </label>
-                            <label>
-                                <span class="form--steps-text">Godzina odbioru</span>
-                                <form:input type="time" path="pickUpTime"/>
-                            </label>
-                            <label>
-                                <span class="form--steps-text">Uwagi dla kuriera</span>
-                                <form:textarea path="pickUpComment"/>
-                            </label>
+                        <div>
+                            <div class="form-group">
+                                <h4>Termin odbioru:</h4>
+                                <label>
+                                    <span class="form--steps-text">Data odbioru</span>
+                                    <form:input type="date" path="pickUpDate"/>
+                                </label>
+                                <label>
+                                    <span class="form--steps-text">Godzina odbioru</span>
+                                    <form:input type="time" path="pickUpTime"/>
+                                </label>
+                                <label>
+                                    <span class="form--steps-text">Uwagi dla kuriera</span>
+                                    <form:textarea path="pickUpComment"/>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="summary" data-step="5">
-            <h3>Podsumowanie</h3>
-            <div class="form-group--buttons">
-                <form:button type="submit" class="btn">Dodaj</form:button>
+            <div class="summary" data-step="5">
+                <h3>Podsumowanie Twojej darowizny</h3>
+                <h4>Oddajesz:</h4>
+                <div class="info-box-columns">
+                    <div class="icon icon-bag"></div>
+                    <div class="info-box-rows">
+                        <div class="info-box-text center">Liczba worków: <span id="infoNumberOfBags"></span></div>
+                        <div class="info-box-columns">
+                            <div class="info-box-text">Zawartość:</div>
+                            <div id="infoCategories" class="info-box-rows"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-box-columns">
+                    <div class="icon icon-hand"></div>
+                    <div class="info-box-text center">Dla organizacji: <span id="infoInstitution"></span></div>
+                </div>
+                <div class="info-box-columns">
+                    <div class="info-box-rows">
+                        <h4>Adres:</h4>
+                        <div id="infoStreet" class="info-box-text"></div>
+                        <div id="infoCity" class="info-box-text"></div>
+                        <div id="infoZipCode" class="info-box-text"></div>
+                        <h4>Numer telefonu:</h4>
+                        <div id="infoPhoneNumber" class="info-box-text"></div>
+                    </div>
+                    <div class="info-box-rows">
+                        <h4>Termin odbioru:</h4>
+                        <div id="infoPickUpDate" class="info-box-text"></div>
+                        <div id="infoPickUpTime" class="info-box-text"></div>
+                        <div id="infoPickUpComment" class="info-box-text"></div>
+                    </div>
+                </div>
+
             </div>
-            </form:form>
-        </div>
-
+        </form:form>
         <div class="form-group--buttons active">
-            <button class="btn prev-step" type="submit">Wróc</button>
+            <button class="btn prev-step" type="submit">Wróć</button>
             <button class="btn next-step" type="submit">Dalej</button>
+            <button class="btn agree-btn hidden" type="submit" form="donation">Potwierdzam</button>
         </div>
     </div>
 </div>
