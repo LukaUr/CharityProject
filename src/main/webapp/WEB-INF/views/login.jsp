@@ -17,31 +17,36 @@
     <title>Login</title>
 </head>
 <body>
-
+<header>
+    <%@include file="fragments/header.jsp" %>
+</header>
 
 <div class="login-page">
-    <h2>Welcome</h2>
+    <h2><fmt:message key="login.welcome"/> </h2>
     <form action="/login" method="post">
 
         <div class="form-group">
             <label>
-                <h4>login</h4>
+                <h4><fmt:message key="login.login"/></h4>
                 <input type="text" name="username" class="input" required autocomplete="off">
             </label>
         </div>
 
         <div class="form-group">
             <label>
-                <h4>hasło</h4>
+                <h4><fmt:message key="login.password"/></h4>
                 <input type="password" name="password" class="input" required autocomplete="off">
             </label>
         </div>
             <div class="form-group--buttons">
-                <input type="submit" value="Sign in" class="btn">
+                <fmt:message key="login.submit" var="loginSubmit"/>
+                <input type="submit" value="${loginSubmit}" class="btn">
             </div>
         <sec:csrfInput/>
     </form>
 </div>
 
+
+<%@include file="fragments/footer.jsp" %>
 </body>
 </html>

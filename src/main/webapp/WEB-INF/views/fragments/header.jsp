@@ -11,16 +11,16 @@
 
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="#" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a href="/login" class="btn btn--small btn--without-border"><fmt:message key="header.nav.login"/> </a></li>
+            <li><a href="#" class="btn btn--small btn--highlighted"><fmt:message key="header.nav.register"/></a></li>
         </ul>
 
         <ul>
-            <li><a href="#" class="btn btn--without-border active">Start</a></li>
-            <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="#" class="btn btn--without-border">O nas</a></li>
-            <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-            <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
+            <li><a href="#" class="btn btn--without-border active"><fmt:message key="header.nav.start"/></a></li>
+            <li><a href="#" class="btn btn--without-border"><fmt:message key="header.nav.about"/></a></li>
+            <li><a href="#" class="btn btn--without-border"><fmt:message key="header.nav.about.us"/></a></li>
+            <li><a href="#" class="btn btn--without-border"><fmt:message key="header.nav.organisations"/></a></li>
+            <li><a href="#" class="btn btn--without-border"><fmt:message key="header.nav.contact"/></a></li>
         </ul>
     </nav>
 

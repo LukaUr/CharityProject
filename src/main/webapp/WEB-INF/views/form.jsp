@@ -16,52 +16,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
-    <title>Form</title>
+    <title><fmt:message key="form.title"/></title>
 </head>
 <body>
 <header class="header--form-page">
     <%@include file="fragments/header.jsp" %>
 
     <section class="steps">
-        <h2>Oddaj rzeczy, których już nie chcesz potrzebującym</h2>
-        <h1>Wystarczą 4 proste kroki</h1>
+        <h2><fmt:message key="index.slogan.give.unwanted.things"/></h2>
+        <h1><fmt:message key="index.steps.title"/></h1>
 
 
         <div class="steps--container">
             <div class="steps--item">
                 <span class="icon icon--hands"></span>
-                <h3>Wybierz rzeczy</h3>
-                <p>ubrania, zabawki, sprzęt i inne</p>
+                <h3><fmt:message key="index.steps.choose.things"/></h3>
+                <p><fmt:message key="index.steps.choose.things.description"/></p>
             </div>
             <div class="steps--item">
                 <span class="icon icon--arrow"></span>
-                <h3>Spakuj je</h3>
-                <p>skorzystaj z worków na śmieci</p>
+                <h3><fmt:message key="index.steps.pack.it"/></h3>
+                <p><fmt:message key="index.steps.pack.it.description"/></p>
             </div>
             <div class="steps--item">
                 <span class="icon icon--glasses"></span>
-                <h3>Zdecyduj komu chcesz pomóc</h3>
-                <p>wybierz zaufane miejsce</p>
+                <h3><fmt:message key="index.steps.decide.who.you.want.to.help"/></h3>
+                <p><fmt:message key="index.steps.choose.trusted.organisation"/></p>
             </div>
             <div class="steps--item">
                 <span class="icon icon--courier"></span>
-                <h3>Zamów kuriera</h3>
-                <p>kurier przyjedzie w dogodnym terminie</p>
+                <h3><fmt:message key="index.order.courier"/></h3>
+                <p><fmt:message key="index.order.courier.description"/></p>
             </div>
         </div>
     </section>
 </header>
 <div class="form--steps">
     <div class="form--steps-instructions">
-        <h3>Ważne!</h3>
-        <h1>Uzupełnij szczegóły dotyczące Twoich rzeczy, dzięki temu będziemy wiedzieć komu je przekazać</h1>
+        <h3><fmt:message key="form.important"/></h3>
+        <h1><fmt:message key="form.important.description"/></h1>
     </div>
 
     <div class="form--steps-container">
         <form:form modelAttribute="donation" method="post" action="/donation" name="donation">
-            <p class="form--steps-counter">Krok <span>1</span>/4</p>
+            <p class="form--steps-counter"><fmt:message key="form.step"/> <span>1</span>/4</p>
             <div class="active" data-step="1">
-                <h3>Zaznacz, co chcesz dodać:</h3>
+                <h3><fmt:message key="form.step.select.things.to.give"/></h3>
                 <c:forEach items="${categories}" var="category">
                     <label class="category">
                         <span><c:out value="${category.name}"/></span>
@@ -72,15 +72,15 @@
             </div>
 
             <div data-step="2">
-                <h3>Podaj liczbę 60l worków, do których spakowałeś/aś rzeczy</h3>
+                <h3><fmt:message key="form.step.enter.number.of.bags"/></h3>
                 <div class="form-group">
-                    <span class="form--steps-text">Liczba 60l worków: </span> <form:input type="number"
+                    <span class="form--steps-text"><fmt:message key="form.step.number.of.bags"/> </span> <form:input type="number"
                                                                                           path="quantity"/>
                 </div>
             </div>
 
             <div data-step="3">
-                <h3>Wybierz organizację, której chcesz pomóc</h3>
+                <h3><fmt:message key="form.step.choose.organisation"/></h3>
                 <div class="form-group--dropdown">
                     <form:select path="institution" items="${institutions}" itemValue="id" itemLabel="name"
                                  class="select"/>
@@ -88,41 +88,41 @@
             </div>
 
             <div data-step="4">
-                <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera</h3>
+                <h3><fmt:message key="form.step.provide.address"/></h3>
                 <div class="form-section">
                     <div class="form-section--columns">
                         <div>
                             <div class="form-group">
-                                <h4>Address:</h4>
+                                <h4><fmt:message key="form.step.address"/></h4>
                                 <label>
-                                    <span class="form--steps-text">Ulica</span>
+                                    <span class="form--steps-text"><fmt:message key="form.step.address.street"/></span>
                                     <form:input path="street"/>
                                 </label>
                                 <label>
-                                    <span class="form--steps-text">Miasto</span>
+                                    <span class="form--steps-text"><fmt:message key="form.step.address.city"/></span>
                                     <form:input path="city"/></label>
-                                <label><span class="form--steps-text">Kod pocztowy</span>
+                                <label><span class="form--steps-text"><fmt:message key="form.step.address.zipcode"/></span>
                                     <form:input path="zipCode"/>
                                 </label>
                                 <label>
-                                    <span class="form--steps-text">Numer telefonu</span>
+                                    <span class="form--steps-text"><fmt:message key="form.step.address.phone"/></span>
                                     <form:input path="phoneNumber"/>
                                 </label>
                             </div>
                         </div>
                         <div>
                             <div class="form-group">
-                                <h4>Termin odbioru:</h4>
+                                <h4><fmt:message key="form.step.pickup.details"/></h4>
                                 <label>
-                                    <span class="form--steps-text">Data odbioru</span>
+                                    <span class="form--steps-text"><fmt:message key="form.step.pickup.date"/></span>
                                     <form:input type="date" path="pickUpDate"/>
                                 </label>
                                 <label>
-                                    <span class="form--steps-text">Godzina odbioru</span>
+                                    <span class="form--steps-text"><fmt:message key="form.step.pickup.time"/></span>
                                     <form:input type="time" path="pickUpTime"/>
                                 </label>
                                 <label>
-                                    <span class="form--steps-text">Uwagi dla kuriera</span>
+                                    <span class="form--steps-text"><fmt:message key="form.step.pickup.courier.info"/></span>
                                     <form:textarea path="pickUpComment"/>
                                 </label>
                             </div>
@@ -132,33 +132,33 @@
             </div>
 
             <div class="summary" data-step="5">
-                <h3>Podsumowanie Twojej darowizny</h3>
-                <h4>Oddajesz:</h4>
+                <h3><fmt:message key="form.summary"/></h3>
+                <h4><fmt:message key="form.summary.you.give"/></h4>
                 <div class="info-box-columns">
                     <div class="icon icon-bag"></div>
                     <div class="info-box-rows">
-                        <div class="info-box-text center">Liczba worków: <span id="infoNumberOfBags"></span></div>
+                        <div class="info-box-text center"><fmt:message key="form.summary.number.of.bags"/> <span id="infoNumberOfBags"></span></div>
                         <div class="info-box-columns">
-                            <div class="info-box-text">Zawartość:</div>
+                            <div class="info-box-text"><fmt:message key="form.summary.content"/></div>
                             <div id="infoCategories" class="info-box-rows"></div>
                         </div>
                     </div>
                 </div>
                 <div class="info-box-columns">
                     <div class="icon icon-hand"></div>
-                    <div class="info-box-text center">Dla organizacji: <span id="infoInstitution"></span></div>
+                    <div class="info-box-text center"><fmt:message key="form.summary.for.organisation"/> <span id="infoInstitution"></span></div>
                 </div>
                 <div class="info-box-columns">
                     <div class="info-box-rows">
-                        <h4>Adres:</h4>
+                        <h4><fmt:message key="form.summary.address"/></h4>
                         <div id="infoStreet" class="info-box-text"></div>
                         <div id="infoCity" class="info-box-text"></div>
                         <div id="infoZipCode" class="info-box-text"></div>
-                        <h4>Numer telefonu:</h4>
+                        <h4><fmt:message key="form.summary.phone.number"/></h4>
                         <div id="infoPhoneNumber" class="info-box-text"></div>
                     </div>
                     <div class="info-box-rows">
-                        <h4>Termin odbioru:</h4>
+                        <h4><fmt:message key="form.summary.pickup.details"/></h4>
                         <div id="infoPickUpDate" class="info-box-text"></div>
                         <div id="infoPickUpTime" class="info-box-text"></div>
                         <div id="infoPickUpComment" class="info-box-text"></div>
@@ -168,9 +168,9 @@
             </div>
         </form:form>
         <div class="form-group--buttons active">
-            <button class="btn prev-step" type="submit">Wróć</button>
-            <button class="btn next-step" type="submit">Dalej</button>
-            <button class="btn agree-btn hidden" type="submit" form="donation">Potwierdzam</button>
+            <button class="btn prev-step" type="submit"><fmt:message key="form.button.back"/></button>
+            <button class="btn next-step" type="submit"><fmt:message key="form.button.next"/></button>
+            <button class="btn agree-btn hidden" type="submit" form="donation"><fmt:message key="form.button.confirm"/></button>
         </div>
     </div>
 </div>
