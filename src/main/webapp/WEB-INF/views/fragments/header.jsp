@@ -21,6 +21,8 @@
             <li><a href="#" class="btn btn--without-border"><fmt:message key="header.nav.about.us"/></a></li>
             <li><a href="#" class="btn btn--without-border"><fmt:message key="header.nav.organisations"/></a></li>
             <li><a href="#" class="btn btn--without-border"><fmt:message key="header.nav.contact"/></a></li>
+            <li><a href="?lang=en" class="btn btn--without-border">EN </a></li>
+            <li><a href="?lang=pl" class="btn btn--without-border">PL</a></li>
         </ul>
     </nav>
 
